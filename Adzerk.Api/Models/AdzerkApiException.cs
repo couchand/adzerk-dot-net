@@ -18,5 +18,10 @@ namespace Adzerk.Api.Models
         {
             this.Context = context;
         }
+
+        public AdzerkApiException(string message, Exception ex, dynamic context) : base(message, ex)
+        {
+            this.Context = context;
+        }
     }
 }

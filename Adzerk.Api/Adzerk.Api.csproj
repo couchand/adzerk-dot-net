@@ -50,10 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Models\AdType.cs" />
+    <Compile Include="Models\Advertiser.cs" />
     <Compile Include="Models\AdzerkApiException.cs" />
+    <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\Channel.cs" />
+    <Compile Include="Models\Flight.cs" />
+    <Compile Include="Models\GeoTargeting.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Priority.cs" />
+    <Compile Include="Models\Publisher.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\ReportResult.cs" />
+    <Compile Include="Models\ResultWrapper.cs" />
+    <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\SiteZoneTargeting.cs" />
+    <Compile Include="Models\Zone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
