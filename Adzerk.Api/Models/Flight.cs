@@ -194,15 +194,8 @@ namespace Adzerk.Api.Models
             f.IsActive = IsActive;
             f.IsCompanion = IsCompanion;
 
-            f.Keywords = Keywords.Split(',').Select(k => k.Trim());
-            if (UserAgentKeywords != null)
-            {
-                f.UserAgentKeywords = UserAgentKeywords.Split(',').Select(k => k.Trim());
-            }
-            else
-            {
-                f.UserAgentKeywords = new List<string>();
-            }
+            f.Keywords = (Keywords ?? "").Split(',').Select(k => k.Trim());
+            f.UserAgentKeywords = (UserAgentKeywords ?? "").Split(',').Select(k => k.Trim());
 
             f.GoalType = (GoalType)GoalType;
             f.RateType = (RateType)RateType;

@@ -132,9 +132,7 @@ namespace Adzerk.Api
 
             try
             {
-                // TODO: restore typed deserialization when issue is resolved
-                //var result = (ResultWrapper<T>)JSON.Deserialize<ResultWrapper<T>>(response.Content);
-                var result = JSON.DeserializeDynamic(response.Content);
+                var result = (ResultWrapper<T>)JSON.Deserialize<ResultWrapper<T>>(response.Content);
                 return result.items;
             }
             catch (Exception ex)
@@ -185,7 +183,8 @@ namespace Adzerk.Api
 
         public IEnumerable<Publisher> ListPublishers()
         {
-            return List<Publisher>("publisher");
+            var publishers = List<PublisherDTO>("publisher");
+            return publishers.Select(p => p.ToPublisher());
         }
 
         public IEnumerable<Site> ListSites()

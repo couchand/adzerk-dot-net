@@ -45,7 +45,7 @@ namespace Adzerk.Api.Models
             c.Title = Title;
             c.IsDeleted = IsDeleted;
             c.Commission = Commission;
-            c.Keywords = Keywords.Split(',').Select(s => s.Trim());
+            c.Keywords = (Keywords ?? "").Split(',').Select(s => s.Trim());
             c.CPM = CPM;
             c.AdTypeIds = AdTypes;
 
