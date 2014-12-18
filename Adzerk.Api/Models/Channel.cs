@@ -16,14 +16,14 @@ namespace Adzerk.Api.Models
 
     public class Channel
     {
-        public long Id;
-        public string Title;
-        public bool IsDeleted;
-        public decimal Commission;
-        public Engine Engine;
-        public IEnumerable<string> Keywords;
-        public decimal CPM;
-        public IEnumerable<long> AdTypeIds;
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public bool IsDeleted { get; set; }
+        public decimal Commission { get; set; }
+        public Engine Engine { get; set; }
+        public IEnumerable<string> Keywords { get; set; }
+        public decimal CPM { get; set; }
+        public IEnumerable<long> AdTypeIds { get; set; }
     }
 
     public class ChannelDTO

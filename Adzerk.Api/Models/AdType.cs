@@ -8,9 +8,9 @@ namespace Adzerk.Api.Models
 {
     public class AdType
     {
-        public long Id;
-        public string Name;
-        public int Width;
-        public int Height;
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }

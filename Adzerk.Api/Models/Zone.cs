@@ -8,9 +8,9 @@ namespace Adzerk.Api.Models
 {
     public class Zone
     {
-        public long Id;
-        public long SiteId;
-        public string Name;
-        public bool IsDeleted;
+        public long Id { get; set; }
+        public long SiteId { get; set; }
+        public string Name { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

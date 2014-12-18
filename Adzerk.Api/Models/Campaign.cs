@@ -8,16 +8,16 @@ namespace Adzerk.Api.Models
 {
     public class Campaign
     {
-        public long Id;
-        public long AdvertiserId;
-        public long? SalespersonId;
-        public string Name;
-        public bool IsDeleted;
-        public bool IsActive;
-        public decimal Price;
-        public DateTime StartDate;
-        public DateTime EndDate;
-        public IEnumerable<Flight> Flights;
+        public long Id { get; set; }
+        public long AdvertiserId { get; set; }
+        public long? SalespersonId { get; set; }
+        public string Name { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public decimal Price { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public IEnumerable<Flight> Flights { get; set; }
     }
 
     public class CampaignDTO

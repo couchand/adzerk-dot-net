@@ -16,12 +16,12 @@ namespace Adzerk.Api.Models
 
     public class Priority
     {
-        public long Id;
-        public string Name;
-        public long ChannelId;
-        public int Weight;
-        public bool IsDeleted;
-        public SelectionAlgorithm? SelectionAlgorithm;
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public long ChannelId { get; set; }
+        public int Weight { get; set; }
+        public bool IsDeleted { get; set; }
+        public SelectionAlgorithm? SelectionAlgorithm { get; set; }
     }
 
     public class PriorityDTO

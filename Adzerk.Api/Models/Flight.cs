@@ -49,64 +49,64 @@ namespace Adzerk.Api.Models
 
     public class Flight
     {
-        public long Id;
-        public long CampaignId;
-        public long PriorityId;
-        public string Name;
+        public long Id { get; set; }
+        public long CampaignId { get; set; }
+        public long PriorityId { get; set; }
+        public string Name { get; set; }
 
-        public DateTime StartDate;
-        public DateTime? EndDate;
-        public bool NoEndDate;
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public bool NoEndDate { get; set; }
 
-        public decimal Price;
-        public long Impressions;
+        public decimal Price { get; set; }
+        public long Impressions { get; set; }
 
-        public bool IsUnlimited;
-        public bool IsDeleted;
-        public bool IsActive;
-        public bool IsCompanion;
+        public bool IsUnlimited { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsCompanion { get; set; }
 
-        public IEnumerable<string> Keywords;
-        public IEnumerable<string> UserAgentKeywords;
+        public IEnumerable<string> Keywords { get; set; }
+        public IEnumerable<string> UserAgentKeywords { get; set; }
 
-        public GoalType GoalType;
-        public RateType? RateType;
+        public GoalType GoalType { get; set; }
+        public RateType? RateType { get; set; }
 
-        public CapType? CapType;
-        public long? DailyCapAmount;
-        public long? LifetimeCapAmount;
+        public CapType? CapType { get; set; }
+        public long? DailyCapAmount { get; set; }
+        public long? LifetimeCapAmount { get; set; }
 
-        public bool IsFreqCap;
-        public long? FreqCap;
-        public long? FreqCapDuration;
-        public FreqCapType FreqCapType;
+        public bool IsFreqCap { get; set; }
+        public long? FreqCap { get; set; }
+        public long? FreqCapDuration { get; set; }
+        public FreqCapType FreqCapType { get; set; }
 
-        public string DatePartingStartTime;
-        public string DatePartingEndTime;
+        public string DatePartingStartTime { get; set; }
+        public string DatePartingEndTime { get; set; }
 
-        public bool IsSunday;
-        public bool IsMonday;
-        public bool IsTuesday;
-        public bool IsWednesday;
-        public bool IsThursday;
-        public bool IsFriday;
-        public bool IsSaturday;
+        public bool IsSunday { get; set; }
+        public bool IsMonday { get; set; }
+        public bool IsTuesday { get; set; }
+        public bool IsWednesday { get; set; }
+        public bool IsThursday { get; set; }
+        public bool IsFriday { get; set; }
+        public bool IsSaturday { get; set; }
 
-        public IEnumerable<GeoTargeting> GeoTargeting;
-        public IEnumerable<SiteZoneTargeting> SiteZoneTargeting;
-        public string CustomTargeting;
+        public IEnumerable<GeoTargeting> GeoTargeting { get; set; }
+        public IEnumerable<SiteZoneTargeting> SiteZoneTargeting { get; set; }
+        public string CustomTargeting { get; set; }
 
-        public bool IsECPMOptimized;
-        public int? ECPMOptimizePeriod;
-        public decimal? ECPMMultiplier;
-        public decimal? FloorECPM;
-        public decimal? CeilingECPM;
-        public decimal? DefaultECPM;
-        public long? ECPMBurnInImpressions;
+        public bool IsECPMOptimized { get; set; }
+        public int? ECPMOptimizePeriod { get; set; }
+        public decimal? ECPMMultiplier { get; set; }
+        public decimal? FloorECPM { get; set; }
+        public decimal? CeilingECPM { get; set; }
+        public decimal? DefaultECPM { get; set; }
+        public long? ECPMBurnInImpressions { get; set; }
 
-        public DeliveryStatus DeliveryStatus;
+        public DeliveryStatus DeliveryStatus { get; set; }
 
-        public string CustomFieldsJson;
+        public string CustomFieldsJson { get; set; }
     }
 
     public class FlightDTO

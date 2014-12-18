@@ -8,9 +8,9 @@ namespace Adzerk.Api.Models
 {
     public class GeoTargeting
     {
-        public string CountryCode;
-        public string Region;
-        public string MetroCode;
-        public bool IsExclude;
+        public string CountryCode { get; set; }
+        public string Region { get; set; }
+        public string MetroCode { get; set; }
+        public bool IsExclude { get; set; }
     }
 }

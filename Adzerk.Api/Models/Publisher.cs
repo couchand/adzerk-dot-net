@@ -24,13 +24,13 @@ namespace Adzerk.Api.Models
 
     public class Publisher
     {
-        public long Id;
-        public string FirstName;
-        public string LastName;
-        public string CompanyName;
-        public string PaypalEmail;
-        public PaymentOption PaymentOption;
-        public Address Address;
+        public long Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string CompanyName { get; set; }
+        public string PaypalEmail { get; set; }
+        public PaymentOption PaymentOption { get; set; }
+        public Address Address { get; set; }
     }
 
     public class PublisherDTO

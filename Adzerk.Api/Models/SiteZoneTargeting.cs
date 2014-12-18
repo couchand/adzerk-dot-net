@@ -8,8 +8,8 @@ namespace Adzerk.Api.Models
 {
     public class SiteZoneTargeting
     {
-        public long SiteId;
-        public long ZoneId;
-        public bool IsExclude;
+        public long SiteId { get; set; }
+        public long ZoneId { get; set; }
+        public bool IsExclude { get; set; }
     }
 }

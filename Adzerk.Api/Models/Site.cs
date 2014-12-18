@@ -8,9 +8,9 @@ namespace Adzerk.Api.Models
 {
     public class Site
     {
-        public long Id;
-        public long? PublisherAccountId;
-        public string Title;
-        public string Url;
+        public long Id { get; set; }
+        public long? PublisherAccountId { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
     }
 }

@@ -8,9 +8,9 @@ namespace Adzerk.Api.Models
 {
     public class Advertiser
     {
-        public long Id;
-        public string Title;
-        public bool IsDeleted;
-        public bool IsActive;
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
     }
 }
