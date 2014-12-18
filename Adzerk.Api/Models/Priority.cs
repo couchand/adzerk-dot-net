@@ -42,7 +42,11 @@ namespace Adzerk.Api.Models
             p.ChannelId = ChannelId;
             p.Weight = Weight;
             p.IsDeleted = IsDeleted;
-            p.SelectionAlgorithm = (SelectionAlgorithm)SelectionAlgorithm;
+
+            if (SelectionAlgorithm.HasValue)
+            {
+                p.SelectionAlgorithm = (SelectionAlgorithm)SelectionAlgorithm;
+            }
 
             return p;
         }

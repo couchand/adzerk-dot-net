@@ -198,9 +198,16 @@ namespace Adzerk.Api.Models
             f.UserAgentKeywords = (UserAgentKeywords ?? "").Split(',').Select(k => k.Trim());
 
             f.GoalType = (GoalType)GoalType;
-            f.RateType = (RateType)RateType;
 
-            f.CapType = (CapType)CapType;
+            if (RateType.HasValue)
+            {
+                f.RateType = (RateType)RateType;
+            }
+
+            if (CapType.HasValue)
+            {
+                f.CapType = (CapType)CapType;
+            }
             f.DailyCapAmount = DailyCapAmount;
             f.LifetimeCapAmount = LifetimeCapAmount;
 
