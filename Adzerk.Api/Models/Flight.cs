@@ -180,7 +180,7 @@ namespace Adzerk.Api.Models
             f.Name = Name;
 
             f.StartDate = DateTime.Parse(StartDate);
-            if (!NoEndDate && f.EndDate != null)
+            if (!NoEndDate && EndDate != null)
             {
                 f.EndDate = DateTime.Parse(EndDate);
             }
