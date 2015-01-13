@@ -44,8 +44,12 @@ namespace Adzerk.Api.Models
             c.IsDeleted = IsDeleted;
             c.IsActive = IsActive;
             c.Price = Price;
+
             c.StartDate = DateTime.Parse(StartDate);
-            c.EndDate = DateTime.Parse(EndDate);
+            if (EndDate != null)
+            {
+                c.EndDate = DateTime.Parse(EndDate);
+            }
 
             if (Flights == null)
             {
