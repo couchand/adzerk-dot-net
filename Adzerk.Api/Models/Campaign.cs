@@ -46,7 +46,15 @@ namespace Adzerk.Api.Models
             c.Price = Price;
             c.StartDate = DateTime.Parse(StartDate);
             c.EndDate = DateTime.Parse(EndDate);
-            c.Flights = Flights.Select(f => f.ToFlight());
+
+            if (Flights == null)
+            {
+                c.Flights = new List<Flight>();
+            }
+            else
+            {
+                c.Flights = Flights.Select(f => f.ToFlight());
+            }
 
             return c;
         }
