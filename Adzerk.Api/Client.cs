@@ -3,6 +3,7 @@ using System.Net;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Adzerk.Api.Models;
 using Jil;
@@ -14,7 +15,7 @@ namespace Adzerk.Api
     {
         string CreateReport(IReport report);
         dynamic PollForResult(string id);
-        void RunReport(IReport report, Action<ReportResult> callback);
+        Task<ReportResult> RunReport(IReport report);
 
         IEnumerable<AdType> ListAdTypes();
         IEnumerable<Advertiser> ListAdvertisers();
@@ -94,7 +95,7 @@ namespace Adzerk.Api
             return JSON.Deserialize<ReportResultWrapper>(response.Content);
         }
 
-        public void RunReport(IReport report, Action<ReportResult> callback)
+        public async Task<ReportResult> RunReport(IReport report)
         {
             var id = CreateReport(report);
 
@@ -102,15 +103,14 @@ namespace Adzerk.Api
 
             while (res.Status == 1)
             {
-                Thread.Sleep(POLL_DELAY);
+                await Task.Delay(POLL_DELAY);
 
                 res = PollForResult(id);
             }
 
             if (res.Status == 2)
             {
-                callback(res.Result);
-                return;
+                return res.Result;
             }
 
             var message = String.Format("Adzerk API error: {0}", res);
