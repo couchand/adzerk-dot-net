@@ -14,7 +14,7 @@ namespace Adzerk.Api
     public interface IClient
     {
         string CreateReport(IReport report);
-        dynamic PollForResult(string id);
+        ReportResult PollForResult(string id);
         Task<ReportResult> RunReport(IReport report);
 
         IEnumerable<AdType> ListAdTypes();
@@ -30,7 +30,7 @@ namespace Adzerk.Api
         IEnumerable<Zone> ListZones();
     }
 
-    public class Client
+    public class Client : IClient
     {
         public const int CURRENT_VERSION = 1;
         public const int POLL_DELAY = 1000;
@@ -79,7 +79,7 @@ namespace Adzerk.Api
             public ReportResult Result;
         }
 
-        public ReportResultWrapper PollForResult(string id)
+        private ReportResultWrapper pollForResult(string id)
         {
             var request = new RestRequest("report/queue/{id}", Method.GET);
             request.AddUrlSegment("id", id);
@@ -97,17 +97,35 @@ namespace Adzerk.Api
             return JSON.Deserialize<ReportResultWrapper>(response.Content);
         }
 
+        public ReportResult PollForResult(string id)
+        {
+            var res = pollForResult(id);
+
+            if (res.Status == 1)
+            {
+                return null;
+            }
+
+            if (res.Status == 2)
+            {
+                return res.Result;
+            }
+
+            var message = String.Format("Adzerk API error: {0}", res.Message);
+            throw new AdzerkApiException(message, res);
+        }
+
         public async Task<ReportResult> RunReport(IReport report)
         {
             var id = CreateReport(report);
 
-            var res = PollForResult(id);
+            var res = pollForResult(id);
 
             while (res.Status == 1)
             {
                 await Task.Delay(POLL_DELAY);
 
-                res = PollForResult(id);
+                res = pollForResult(id);
             }
 
             if (res.Status == 2)
