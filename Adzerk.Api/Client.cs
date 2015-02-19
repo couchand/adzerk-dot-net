@@ -75,6 +75,7 @@ namespace Adzerk.Api
         public class ReportResultWrapper
         {
             public int Status;
+            public string Message;
             public ReportResult Result;
         }
 
@@ -114,7 +115,7 @@ namespace Adzerk.Api
                 return res.Result;
             }
 
-            var message = String.Format("Adzerk API error: {0}", res);
+            var message = String.Format("Adzerk API error: {0}", res.Message);
             throw new AdzerkApiException(message, res);
         }
 

@@ -23,7 +23,7 @@ namespace Adzerk.Api.Models
         {
             "day", "week", "month",
             "advertiserId", "brandId", "campaignId", "optionId",
-            "flightId", "creativeId", "adTypeId", "siteId", "zoneId",
+            "creativeId", "adTypeId", "siteId", "zoneId",
             "countryCode", "metroCode", "keyword"
         };
 
@@ -110,6 +110,12 @@ namespace Adzerk.Api.Models
 
         public void AddGroupBy(string group)
         {
+            if (group == "flightId")
+            {
+                groupBy.Add("optionId");
+                return;
+            }
+
             if (!VALID_GROUPS.Contains(group))
             {
                 throw new AdzerkApiException(String.Format("Invalid group: '{0}'.", group));
