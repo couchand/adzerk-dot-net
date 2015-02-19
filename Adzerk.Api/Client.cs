@@ -22,6 +22,7 @@ namespace Adzerk.Api
         IEnumerable<Campaign> ListCampaigns();
         IEnumerable<Channel> ListChannels();
         IEnumerable<Flight> ListFlights();
+        IEnumerable<Flight> ListCampaignFlights(long campaignId);
         IEnumerable<Login> ListLogins();
         IEnumerable<Priority> ListPriorities();
         IEnumerable<Publisher> ListPublishers();
@@ -167,6 +168,13 @@ namespace Adzerk.Api
         public IEnumerable<Flight> ListFlights()
         {
             var flights = List<FlightDTO>("flight");
+            return flights.Select(f => f.ToFlight());
+        }
+
+        public IEnumerable<Flight> ListCampaignFlights(long campaignId)
+        {
+            var resource = String.Format("campaign/{0}/flight", campaignId);
+            var flights = List<FlightDTO>(resource);
             return flights.Select(f => f.ToFlight());
         }
 
