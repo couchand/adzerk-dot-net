@@ -68,8 +68,15 @@ namespace Adzerk.Api
                 throw new AdzerkApiException(message, response);
             }
 
-            var result = JSON.DeserializeDynamic(response.Content);
-            return result.Id;
+            try
+            {
+                var result = JSON.DeserializeDynamic(response.Content);
+                return result.Id;
+            }
+            catch (Exception ex)
+            {
+                throw new AdzerkApiException("Report result does not contain report Id.", ex, report);
+            }
         }
 
         public class ReportResultWrapper
