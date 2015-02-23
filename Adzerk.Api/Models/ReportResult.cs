@@ -53,8 +53,27 @@ namespace Adzerk.Api.Models
         public string LastDate;
         public double CTR;
         public IEnumerable<ReportDetail> Details;
-        public IDictionary<string, dynamic> Grouping;
+        public ReportGrouping Grouping;
         public decimal eCPM;
+    }
+
+    public class ReportGrouping
+    {
+        public long OptionId;
+        public long BrandId;
+        public long CampaignId;
+        public long SiteId;
+        public long ZoneId;
+        public long CreativeId;
+        public long PublisherAccountId;
+        public long AdTypeId;
+        public long ChannelId;
+        public long Date;
+        public string DateType;
+        public long MetroCode;
+        public long PriorityId;
+        public long RateTypeId;
+        public string Price;
     }
 
     public class ReportOption
