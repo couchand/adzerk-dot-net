@@ -179,6 +179,13 @@ namespace Adzerk.Api
             return List<Advertiser>("advertiser");
         }
 
+        public IEnumerable<Creative> ListAdvertiserCreatives(long advertiserId)
+        {
+            var resource = String.Format("advertiser/{0}/creatives", advertiserId);
+            var creatives = List<Creative>(resource);
+            return creatives;
+        }
+
         public IEnumerable<Campaign> ListCampaigns()
         {
             var campaigns = List<CampaignDTO>("campaign");
