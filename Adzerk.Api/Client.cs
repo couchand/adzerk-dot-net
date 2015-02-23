@@ -21,6 +21,7 @@ namespace Adzerk.Api
         IEnumerable<Advertiser> ListAdvertisers();
         IEnumerable<Campaign> ListCampaigns();
         IEnumerable<Channel> ListChannels();
+        IEnumerable<Creative> ListAdvertiserCreatives(long advertiserId);
         IEnumerable<Flight> ListFlights();
         IEnumerable<Flight> ListCampaignFlights(long campaignId);
         IEnumerable<Login> ListLogins();
