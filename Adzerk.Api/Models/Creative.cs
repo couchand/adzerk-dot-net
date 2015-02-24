@@ -7,6 +7,7 @@ namespace Adzerk.Api.Models
 {
     public class Creative
     {
+        long Id { get; set; }
         long AdvertiserId { get; set; }
         long AdTypeId { get; set; }
 
