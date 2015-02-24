@@ -7,20 +7,20 @@ namespace Adzerk.Api.Models
 {
     public class Creative
     {
-        long Id { get; set; }
-        long AdvertiserId { get; set; }
-        long AdTypeId { get; set; }
+        public long Id { get; set; }
+        public long AdvertiserId { get; set; }
+        public long AdTypeId { get; set; }
 
-        string Body { get; set; }
-        string Url { get; set; }
-        string Title { get; set; }
-        string Alt { get; set; }
+        public string Body { get; set; }
+        public string Url { get; set; }
+        public string Title { get; set; }
+        public string Alt { get; set; }
 
-        bool IsSync { get; set; }
-        bool IsDeleted { get; set; }
-        bool IsActive { get; set; }
+        public bool IsSync { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
 
-        bool IsHTMLJS { get; set; }
-        string ScriptBody { get; set; }
+        public bool IsHTMLJS { get; set; }
+        public string ScriptBody { get; set; }
     }
 }
