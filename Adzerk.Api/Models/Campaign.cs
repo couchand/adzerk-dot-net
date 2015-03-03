@@ -18,6 +18,7 @@ namespace Adzerk.Api.Models
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public IEnumerable<Flight> Flights { get; set; }
+        public string CustomFieldsJson { get; set; }
     }
 
     public class CampaignDTO
@@ -32,6 +33,7 @@ namespace Adzerk.Api.Models
         public string StartDate;
         public string EndDate;
         public IEnumerable<FlightDTO> Flights;
+        public string CustomFieldsJson;
 
         public Campaign ToCampaign()
         {
@@ -44,6 +46,7 @@ namespace Adzerk.Api.Models
             c.IsDeleted = IsDeleted;
             c.IsActive = IsActive;
             c.Price = Price;
+            c.CustomFieldsJson = CustomFieldsJson;
 
             c.StartDate = DateTime.Parse(StartDate);
             if (EndDate != null)
