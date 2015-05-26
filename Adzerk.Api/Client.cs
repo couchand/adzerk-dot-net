@@ -66,7 +66,7 @@ namespace Adzerk.Api
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var message = String.Format("Adzerk API error: {0}", response.StatusDescription);
-                throw new AdzerkApiException(message, response);
+                throw new AdzerkApiException(message, new { request, response });
             }
 
             try
@@ -76,7 +76,7 @@ namespace Adzerk.Api
             }
             catch (Exception ex)
             {
-                throw new AdzerkApiException("Report result does not contain report Id.", ex, report);
+                throw new AdzerkApiException("Report result does not contain report Id.", new { request, response });
             }
         }
 
@@ -99,7 +99,7 @@ namespace Adzerk.Api
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var message = String.Format("Adzerk API error: {0}", response.StatusDescription);
-                throw new AdzerkApiException(message, response);
+                throw new AdzerkApiException(message, new { request, response });
             }
 
             return JSON.Deserialize<ReportResultWrapper>(response.Content);
@@ -120,7 +120,7 @@ namespace Adzerk.Api
             }
 
             var message = String.Format("Adzerk API error: {0}", res.Message);
-            throw new AdzerkApiException(message, res);
+            throw new AdzerkApiException(message, new { response = res });
         }
 
         public async Task<ReportResult> RunReport(IReport report)
@@ -142,7 +142,7 @@ namespace Adzerk.Api
             }
 
             var message = String.Format("Adzerk API error: {0}", res.Message);
-            throw new AdzerkApiException(message, res);
+            throw new AdzerkApiException(message, new { response = res });
         }
 
         public IEnumerable<T> List<T>(string resource)
@@ -155,7 +155,7 @@ namespace Adzerk.Api
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var message = String.Format("Adzerk API error: {0}", response.StatusDescription);
-                throw new AdzerkApiException(message, response);
+                throw new AdzerkApiException(message, new { request, response });
             }
 
             try
@@ -166,7 +166,7 @@ namespace Adzerk.Api
             catch (Exception ex)
             {
                 var message = String.Format("Adzerk client error deserializing \"{0}\"", resource);
-                throw new AdzerkApiException(message, ex, response);
+                throw new AdzerkApiException(message, ex, new { request, response });
             }
         }
 
