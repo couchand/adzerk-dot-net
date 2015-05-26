@@ -107,6 +107,86 @@ namespace Adzerk.Api.Models
         public DeliveryStatus DeliveryStatus { get; set; }
 
         public string CustomFieldsJson { get; set; }
+
+        public FlightDTO ToDTO()
+        {
+            var f = new FlightDTO();
+
+            f.Id = Id;
+            f.CampaignId = CampaignId;
+            f.PriorityId = PriorityId;
+            f.Name = Name;
+
+            f.StartDate = StartDate.ToLongDateString();
+            if (!NoEndDate && EndDate.HasValue)
+            {
+                f.EndDate = EndDate.Value.ToLongDateString();
+            }
+            f.NoEndDate = NoEndDate;
+
+            f.Price = Price;
+            f.Impressions = Impressions;
+
+            f.IsUnlimited = IsUnlimited;
+            f.IsDeleted = IsDeleted;
+            f.IsActive = IsActive;
+            f.IsCompanion = IsCompanion;
+
+            f.Keywords = String.Join(",", Keywords);
+            f.UserAgentKeywords = String.Join(",", UserAgentKeywords);
+
+            f.GoalType = (int)GoalType;
+
+            if (RateType.HasValue)
+            {
+                f.RateType = (int)RateType;
+            }
+
+            if (CapType.HasValue)
+            {
+                f.CapType = (int)CapType;
+            }
+            f.DailyCapAmount = DailyCapAmount;
+            f.LifetimeCapAmount = LifetimeCapAmount;
+
+            f.IsFreqCap = IsFreqCap;
+
+            if (IsFreqCap)
+            {
+                f.FreqCap = FreqCap;
+                f.FreqCapDuration = FreqCapDuration;
+                f.FreqCapType = (int)FreqCapType;
+            }
+
+            f.DatePartingStartTime = DatePartingStartTime;
+            f.DatePartingEndTime = DatePartingEndTime;
+
+            f.IsSunday = IsSunday;
+            f.IsMonday = IsMonday;
+            f.IsTuesday = IsTuesday;
+            f.IsWednesday = IsWednesday;
+            f.IsThursday = IsThursday;
+            f.IsFriday = IsFriday;
+            f.IsSaturday = IsSaturday;
+
+            f.GeoTargeting = GeoTargeting;
+            f.SiteZoneTargeting = SiteZoneTargeting;
+            f.CustomTargeting = CustomTargeting;
+
+            f.IsECPMOptimized = IsECPMOptimized;
+            f.ECPMOptimizePeriod = ECPMOptimizePeriod;
+            f.ECPMMultiplier = ECPMMultiplier;
+            f.FloorECPM = FloorECPM;
+            f.CeilingECPM = CeilingECPM;
+            f.DefaultECPM = DefaultECPM;
+            f.ECPMBurnInImpressions = ECPMBurnInImpressions;
+
+            f.DeliveryStatus = (int)DeliveryStatus;
+
+            f.CustomFieldsJson = CustomFieldsJson;
+
+            return f;
+        }
     }
 
     public class FlightDTO

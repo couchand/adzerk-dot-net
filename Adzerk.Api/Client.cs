@@ -29,6 +29,12 @@ namespace Adzerk.Api
         IEnumerable<Publisher> ListPublishers();
         IEnumerable<Site> ListSites();
         IEnumerable<Zone> ListZones();
+
+        Campaign GetCampaign(long campaignId);
+        Campaign UpdateCampaign(Campaign campaign);
+
+        Flight GetFlight(long flightId);
+        Flight UpdateFlight(Flight flight);
     }
 
     public class Client : IClient
@@ -237,6 +243,91 @@ namespace Adzerk.Api
         public IEnumerable<Zone> ListZones()
         {
             return List<Zone>("zone");
+        }
+
+        private string ResourceUrl(string resource, long id)
+        {
+            return String.Format("{0}/{1}", resource, id);
+        }
+
+        private T Get<T>(string resource, long id)
+        {
+            var request = new RestRequest(ResourceUrl(resource, id));
+            addHeader(request);
+
+            var response = client.Execute(request);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var message = String.Format("Adzerk API error: {0}", response.StatusDescription);
+                throw new AdzerkApiException(message, new { request, response });
+            }
+
+            try
+            {
+                var result = (T)JSON.Deserialize<T>(response.Content);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var message = String.Format("Adzerk client error deserializing \"{0}\"", resource);
+                throw new AdzerkApiException(message, ex, new { request, response });
+            }
+        }
+
+        public Campaign GetCampaign(long campaignId)
+        {
+            var campaign = Get<CampaignDTO>("campaign", campaignId);
+            return campaign.ToCampaign();
+        }
+
+        public Flight GetFlight(long flightId)
+        {
+            var flight = Get<FlightDTO>("flight", flightId);
+            return flight.ToFlight();
+        }
+
+        private T Update<T>(string resource, long id, T dto)
+        {
+            var request = new RestRequest(ResourceUrl(resource, id), Method.PUT);
+            addHeader(request);
+
+            var data = new Dictionary<string, T>();
+            data[resource] = dto;
+            request.AddBody(data);
+
+            var response = client.Execute(request);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var message = String.Format("Adzerk API error: {0}", response.StatusDescription);
+                throw new AdzerkApiException(message, new { request, response });
+            }
+
+            try
+            {
+                var result = (T)JSON.Deserialize<T>(response.Content);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var message = String.Format("Adzerk client error deserializing \"{0}\"", resource);
+                throw new AdzerkApiException(message, ex, new { request, response });
+            }
+        }
+
+        public Campaign UpdateCampaign(Campaign campaign)
+        {
+            var dto = campaign.ToDTO();
+            var updated = Update<CampaignDTO>("campaign", campaign.Id, dto);
+            return updated.ToCampaign();
+        }
+
+        public Flight UpdateFlight(Flight flight)
+        {
+            var dto = flight.ToDTO();
+            var updated = Update<FlightDTO>("flight", flight.Id, dto);
+            return updated.ToFlight();
         }
     }
 }

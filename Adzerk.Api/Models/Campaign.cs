@@ -19,6 +19,30 @@ namespace Adzerk.Api.Models
         public DateTime? EndDate { get; set; }
         public IEnumerable<Flight> Flights { get; set; }
         public string CustomFieldsJson { get; set; }
+
+        public CampaignDTO ToDTO()
+        {
+            var c = new CampaignDTO();
+
+            c.Id = Id;
+            c.AdvertiserId = AdvertiserId;
+            c.SalespersonId = SalespersonId;
+            c.Name = Name;
+            c.IsDeleted = IsDeleted;
+            c.IsActive = IsActive;
+            c.Price = Price;
+            c.CustomFieldsJson = CustomFieldsJson;
+
+            c.StartDate = StartDate.ToShortDateString();
+            if (EndDate.HasValue)
+            {
+                c.EndDate = EndDate.Value.ToShortDateString();
+            }
+
+            c.Flights = Flights.Select(f => f.ToDTO());
+
+            return c;
+        }
     }
 
     public class CampaignDTO
