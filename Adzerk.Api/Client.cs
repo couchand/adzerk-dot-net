@@ -145,7 +145,7 @@ namespace Adzerk.Api
             throw new AdzerkApiException(message, new { response = res });
         }
 
-        public IEnumerable<T> List<T>(string resource)
+        private IEnumerable<T> List<T>(string resource)
         {
             var request = new RestRequest(resource);
             addHeader(request);
