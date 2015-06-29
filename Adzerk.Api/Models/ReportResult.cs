@@ -71,6 +71,7 @@ namespace Adzerk.Api.Models
         public long Date;
         public string DateType;
         public long MetroCode;
+        public string Keyword;
         public long PriorityId;
         public long RateTypeId;
         public string Price;
